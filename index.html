@@ -1,124 +1,195 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AllWays Shipping Company — Home</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AllWays Company</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      width: 100%;
+      background: linear-gradient(90deg, #3b82f6, #1e40af);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header img {
+      height: 50px;
+      width: auto;
+      border-radius: 8px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .lang-switch {
+      background: #fff;
+      color: #1e40af;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .lang-switch:hover {
+      background: #e0e7ff;
+    }
+
+    main {
+      padding: 40px 10%;
+      text-align: center;
+    }
+
+    section {
+      margin: 50px 0;
+    }
+
+    footer {
+      background: #1e40af;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      nav {
+        justify-content: center;
+      }
+      main {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-<header class="header">
-  <div class="wrap">
-    <div class="logo-wrap">
-      <img src="logo.svg" alt="AllWays logo" />
-      <div class="logo-text" data-i18n="company_name">AllWays Shipping Company</div>
+  <header>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" id="logo" />
+      <h1 id="companyName">AllWays</h1>
     </div>
-
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html" data-i18n="nav_home">Home</a>
-      <a href="about.html" data-i18n="nav_about">About</a>
-      <a href="services.html" data-i18n="nav_services">Services</a>
-      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    <nav>
+      <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="#about" data-en="About" data-ar="من نحن">About</a>
+      <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
+      <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+      <button class="lang-switch" id="langBtn">عربي</button>
     </nav>
+  </header>
 
-    <div class="lang-toggle" role="tablist" aria-label="Language switch">
-      <button class="lang-btn active" id="lang-en">EN</button>
-      <button class="lang-btn" id="lang-ar">AR</button>
-    </div>
+  <main>
+    <section id="home">
+      <h2 data-en="Welcome to AllWays" data-ar="مرحباً بكم في أول وايز">Welcome to AllWays</h2>
+      <p data-en="We provide smart digital solutions for your business."
+         data-ar="نحن نقدم حلولاً رقمية ذكية لعملك.">
+        We provide smart digital solutions for your business.
+      </p>
+    </section>
 
-    <div style="margin-left:8px">
-      <button class="btn" onclick="openLogin()" data-i18n="btn_signin">Sign In</button>
-    </div>
-  </div>
-</header>
+    <section id="about">
+      <h2 data-en="About Us" data-ar="من نحن">About Us</h2>
+      <p data-en="AllWays is a tech-driven company focused on innovation and growth."
+         data-ar="أول وايز هي شركة تكنولوجية تركز على الابتكار والنمو.">
+        AllWays is a tech-driven company focused on innovation and growth.
+      </p>
+    </section>
 
-<main class="container">
-  <section class="hero card" style="background-image:url('https://images.unsplash.com/photo-1517148815978-75f6acaaf32c?auto=format&fit=crop&w=1400&q=80')">
-    <div class="hero-left">
-      <h1 data-i18n="hero_title">AllWays Shipping Company</h1>
-      <p class="lead" data-i18n="hero_lead">Fast. Secure. Global. We deliver packages and freight across the world with reliable tracking and friendly service.</p>
-      <div class="hero-cta">
-        <button class="btn" onclick="location.href='services.html'" data-i18n="btn_services">Our Services</button>
-        <button class="btn" onclick="document.getElementById('contact-scroll').scrollIntoView({behavior:'smooth'})" data-i18n="btn_contact">Contact Us</button>
-      </div>
-    </div>
-    <div style="width:360px">
-      <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=700&q=80" alt="Shipping" style="width:100%;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.18)">
-    </div>
-  </section>
+    <section id="services">
+      <h2 data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+      <ul>
+        <li data-en="Website Development" data-ar="تطوير المواقع الإلكترونية">Website Development</li>
+        <li data-en="UI / UX Design" data-ar="تصميم واجهات المستخدم">UI / UX Design</li>
+        <li data-en="Digital Marketing" data-ar="التسويق الرقمي">Digital Marketing</li>
+      </ul>
+    </section>
 
-  <section class="section">
-    <h2 style="color:var(--blue)" data-i18n="why_title">Why Choose AllWays?</h2>
-    <div class="why-us">
-      <div class="why-card card"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80" alt=""><div class="txt"><h3 data-i18n="why_speed">Speed</h3><p data-i18n="why_speed_p">Quick deliveries and on-time performance.</p></div></div>
-      <div class="why-card card"><img src="https://images.unsplash.com/photo-1556740765-2f6b4a0b4a4e?auto=format&fit=crop&w=900&q=80" alt=""><div class="txt"><h3 data-i18n="why_security">Security</h3><p data-i18n="why_security_p">Insured shipping and real-time tracking.</p></div></div>
-      <div class="why-card card"><img src="https://images.unsplash.com/photo-1526676031502-9f1b7f3c4f3a?auto=format&fit=crop&w=900&q=80" alt=""><div class="txt"><h3 data-i18n="why_global">Global Reach</h3><p data-i18n="why_global_p">Partnerships across continents for smooth delivery.</p></div></div>
-    </div>
-  </section>
+    <section id="contact">
+      <h2 data-en="Contact Us" data-ar="تواصل معنا">Contact Us</h2>
+      <p data-en="You can reach us anytime via the following:"
+         data-ar="يمكنك التواصل معنا في أي وقت عبر التالي:">
+        You can reach us anytime via the following:
+      </p>
+      <p>📞 <a href="tel:+201234567890">+20 123 456 7890</a></p>
+      <p>💬 <a href="https://wa.me/201234567890" target="_blank">WhatsApp</a></p>
+      <p>🌐 <a href="https://facebook.com/" target="_blank">Facebook</a></p>
+    </section>
+  </main>
 
-  <section class="section">
-    <h2 style="color:var(--blue)" data-i18n="services_title">Our Services</h2>
-    <div class="grid">
-      <div class="card"><img src="https://images.unsplash.com/photo-1517638851339-4aa32003c9a6?auto=format&fit=crop&w=800&q=80" alt=""><h4 data-i18n="svc_air">Air Freight</h4><p class="muted" data-i18n="svc_air_p">Fast international air shipping.</p></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1505575978213-9b9c19a1f6b8?auto=format&fit=crop&w=800&q=80" alt=""><h4 data-i18n="svc_sea">Sea Freight</h4><p class="muted" data-i18n="svc_sea_p">Cost-efficient container shipping.</p></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80" alt=""><h4 data-i18n="svc_ground">Ground Delivery</h4><p class="muted" data-i18n="svc_ground_p">Local & last-mile delivery solutions.</p></div>
-    </div>
-  </section>
+  <footer>
+    <p>© 2025 AllWays. All rights reserved.</p>
+  </footer>
 
-  <section class="section card comments-wrap">
-    <h2 style="color:var(--blue)" data-i18n="comments_title">Client Feedback</h2>
-    <p class="muted" data-i18n="comments_lead">Sign in to post a comment. Recent comments are shown below.</p>
+  <script>
+    const langBtn = document.getElementById('langBtn');
+    let currentLang = localStorage.getItem('lang') || 'en';
+    applyLang();
 
-    <div id="loginBox" class="comment-box">
-      <div style="display:flex;gap:8px;align-items:center">
-        <input id="username" placeholder="Enter your name" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e8f0ff">
-        <button id="loginBtn" class="btn" data-i18n="btn_signin_small">Sign In</button>
-      </div>
-    </div>
+    langBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      localStorage.setItem('lang', currentLang);
+      applyLang();
+    });
 
-    <div id="commentArea" class="hidden comment-box" style="margin-top:12px">
-      <textarea id="commentInput" placeholder="Write your comment..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #e8f0ff"></textarea>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button id="postBtn" class="btn" data-i18n="btn_post">Post Comment</button>
-        <button id="signOutBtn" class="btn" style="background:#6b7280" data-i18n="btn_signout">Sign Out</button>
-      </div>
-    </div>
-
-    <div class="comment-box" style="margin-top:12px">
-      <div class="comments-scroll" id="commentsList"></div>
-    </div>
-  </section>
-
-  <section id="contact-scroll" class="contact-section">
-    <div class="left">
-      <h3 data-i18n="contact_heading">Contact Us</h3>
-      <p class="muted" data-i18n="contact_info">Phone: <strong id="phone">+20 123 456 7890</strong> — Email: support@allways.example</p>
-    </div>
-    <div class="right">
-      <a id="wa" class="icon" href="https://wa.me/201234567890" target="_blank" title="WhatsApp">💬</a>
-      <a id="fb" class="icon" href="https://facebook.com/" target="_blank" title="Facebook">📘</a>
-      <a id="tel" class="icon" href="tel:+201234567890" title="Call">📞</a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container" data-i18n="footer_text">© AllWays Shipping Company — All rights reserved</div>
-</footer>
-
-<!-- login modal -->
-<div id="loginModal" class="modal hidden" style="display:none">
-  <div class="card">
-    <h3 data-i18n="modal_title">Sign In</h3>
-    <input id="modalName" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e8f0ff;margin-top:8px" />
-    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
-      <button class="btn" onclick="doModalLogin()" data-i18n="btn_signin">Sign In</button>
-      <button class="btn" style="background:#6b7280" onclick="closeLogin()" data-i18n="btn_cancel">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+    function applyLang() {
+      const elements = document.querySelectorAll('[data-en]');
+      elements.forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+      if (currentLang === 'ar') {
+        document.documentElement.dir = 'rtl';
+        document.body.style.fontFamily = '"Tajawal", sans-serif';
+        langBtn.textContent = 'English';
+      } else {
+        document.documentElement.dir = 'ltr';
+        document.body.style.fontFamily = '"Poppins", sans-serif';
+        langBtn.textContent = 'عربي';
+      }
+    }
+  </script>
 </body>
 </html>
