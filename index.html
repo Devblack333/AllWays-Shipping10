@@ -1,85 +1,111 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AllWays Company</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllWays</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Poppins", sans-serif;
-      background: #f5f7fa;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7fc;
       color: #222;
-      line-height: 1.6;
     }
 
+    /* HEADER */
     header {
-      width: 100%;
-      background: linear-gradient(90deg, #3b82f6, #1e40af);
-      color: #fff;
+      background: linear-gradient(90deg, #2563eb, #1e3a8a);
+      color: white;
+      padding: 12px 6%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px 5%;
-      flex-wrap: wrap;
+      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 999;
+      flex-wrap: wrap;
     }
 
-    header img {
-      height: 50px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 45px;
       width: auto;
-      border-radius: 8px;
     }
 
     nav {
       display: flex;
+      align-items: center;
       gap: 20px;
       flex-wrap: wrap;
-      align-items: center;
     }
 
     nav a {
-      color: #fff;
+      color: white;
       text-decoration: none;
       font-weight: 500;
       transition: 0.3s;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    nav a:hover { text-decoration: underline; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
 
-    .lang-switch {
-      background: #fff;
-      color: #1e40af;
+    .lang-switch, .signin-btn {
+      background: white;
       border: none;
+      color: #1e3a8a;
+      font-weight: 600;
       padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
-      font-weight: 600;
       transition: 0.3s;
     }
 
-    .lang-switch:hover {
+    .lang-switch:hover, .signin-btn:hover {
       background: #e0e7ff;
     }
 
+    /* MAIN CONTENT */
     main {
-      padding: 40px 10%;
+      padding: 60px 8%;
       text-align: center;
     }
 
     section {
-      margin: 50px 0;
+      margin: 60px 0;
     }
 
+    h2 {
+      margin-bottom: 15px;
+      color: #1e3a8a;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    /* FOOTER */
     footer {
-      background: #1e40af;
+      background: #1e3a8a;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 20px 10px;
     }
 
     footer a {
@@ -91,26 +117,72 @@
       text-decoration: underline;
     }
 
-    /* Responsive */
+    /* SIGN-IN MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      background: #2563eb;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .modal-content button:hover {
+      background: #1e40af;
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
-        align-items: center;
+        gap: 10px;
         text-align: center;
       }
       nav {
         justify-content: center;
       }
       main {
-        padding: 20px;
+        padding: 40px 5%;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" id="logo" />
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" id="logo">
       <h1 id="companyName">AllWays</h1>
     </div>
     <nav>
@@ -118,8 +190,11 @@
       <a href="#about" data-en="About" data-ar="من نحن">About</a>
       <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
       <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
-      <button class="lang-switch" id="langBtn">عربي</button>
     </nav>
+    <div class="actions">
+      <button class="lang-switch" id="langBtn">عربي</button>
+      <button class="signin-btn" id="signinBtn" data-en="Sign In" data-ar="تسجيل الدخول">Sign In</button>
+    </div>
   </header>
 
   <main>
@@ -164,9 +239,32 @@
     <p>© 2025 AllWays. All rights reserved.</p>
   </footer>
 
+  <!-- SIGN IN MODAL -->
+  <div class="modal" id="signinModal">
+    <div class="modal-content">
+      <h3 data-en="Sign In" data-ar="تسجيل الدخول">Sign In</h3>
+      <input type="text" id="username" placeholder="Enter your name" data-en="Enter your name" data-ar="أدخل اسمك">
+      <button id="loginConfirm" data-en="Confirm" data-ar="تأكيد">Confirm</button>
+    </div>
+  </div>
+
   <script>
     const langBtn = document.getElementById('langBtn');
+    const signinBtn = document.getElementById('signinBtn');
+    const signinModal = document.getElementById('signinModal');
+    const loginConfirm = document.getElementById('loginConfirm');
     let currentLang = localStorage.getItem('lang') || 'en';
+
+    // Language Switch
+    function applyLang() {
+      const elements = document.querySelectorAll('[data-en]');
+      elements.forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.body.style.fontFamily = currentLang === 'ar' ? '"Tajawal", sans-serif' : '"Poppins", sans-serif';
+      langBtn.textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    }
     applyLang();
 
     langBtn.addEventListener('click', () => {
@@ -175,21 +273,22 @@
       applyLang();
     });
 
-    function applyLang() {
-      const elements = document.querySelectorAll('[data-en]');
-      elements.forEach(el => {
-        el.textContent = el.getAttribute(`data-${currentLang}`);
-      });
-      if (currentLang === 'ar') {
-        document.documentElement.dir = 'rtl';
-        document.body.style.fontFamily = '"Tajawal", sans-serif';
-        langBtn.textContent = 'English';
-      } else {
-        document.documentElement.dir = 'ltr';
-        document.body.style.fontFamily = '"Poppins", sans-serif';
-        langBtn.textContent = 'عربي';
-      }
-    }
+    // Sign In Modal
+    signinBtn.addEventListener('click', () => {
+      signinModal.style.display = 'flex';
+    });
+
+    loginConfirm.addEventListener('click', () => {
+      const username = document.getElementById('username').value.trim();
+      if (!username) return alert(currentLang === 'ar' ? 'الرجاء إدخال الاسم' : 'Please enter your name');
+      localStorage.setItem('user', username);
+      alert((currentLang === 'ar' ? 'مرحباً، ' : 'Welcome, ') + username + '!');
+      signinModal.style.display = 'none';
+    });
+
+    signinModal.addEventListener('click', (e) => {
+      if (e.target === signinModal) signinModal.style.display = 'none';
+    });
   </script>
 </body>
 </html>
