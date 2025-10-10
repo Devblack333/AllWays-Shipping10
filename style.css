@@ -1,133 +1,84 @@
-// Language data and UI logic + comments system
-const LANG = {
-  en: {
-    company_name: "AllWays Shipping Company",
-    nav_home: "Home", nav_about: "About", nav_services: "Services", nav_contact: "Contact",
-    hero_title: "AllWays Shipping Company",
-    hero_lead: "Fast. Secure. Global. We deliver packages and freight across the world with reliable tracking and friendly service.",
-    btn_services: "Our Services", btn_contact: "Contact Us", btn_signin: "Sign In", btn_signin_small: "Sign In",
-    why_title: "Why Choose AllWays?",
-    why_speed: "Speed", why_speed_p: "Quick deliveries and on-time performance.",
-    why_security: "Security", why_security_p: "Insured shipping and real-time tracking.",
-    why_global: "Global Reach", why_global_p: "Partnerships across continents for smooth delivery.",
-    services_title: "Our Services", svc_air: "Air Freight", svc_air_p: "Fast international air shipping.",
-    svc_sea: "Sea Freight", svc_sea_p: "Cost-efficient container shipping.", svc_ground: "Ground Delivery", svc_ground_p: "Local & last-mile delivery solutions.",
-    comments_title: "Client Feedback", comments_lead: "Sign in to post a comment. Recent comments are shown below.",
-    btn_post: "Post Comment", btn_signout: "Sign Out", modal_title: "Sign In", btn_cancel: "Cancel",
-    contact_heading: "Contact Us", contact_info: "Phone: {phone} — Email: support@allways.example",
-    footer_text: "© AllWays Shipping Company — All rights reserved",
-    about_title: "About AllWays Shipping Company", about_p: "We are a team of logistics professionals dedicated to safe and reliable shipments worldwide.",
-    services_title: "Our Services", svc_customs: "Customs Clearance", svc_customs_p: "Documentation and compliance support.",
-    btn_whatsapp: "Message on WhatsApp", btn_facebook: "Visit our Facebook"
-  },
-  ar: {
-    company_name: "AllWays Shipping Company",
-    nav_home: "الرئيسية", nav_about: "من نحن", nav_services: "خدماتنا", nav_contact: "اتصل بنا",
-    hero_title: "شركة الشحن AllWays", hero_lead: "سريع. آمن. عالمي. نوفر تتبعًا موثوقًا وخدمة ودودة لشحن الطرود والبضائع حول العالم.",
-    btn_services: "خدماتنا", btn_contact: "اتصل بنا", btn_signin: "تسجيل الدخول", btn_signin_small: "تسجيل",
-    why_title: "لماذا تختار AllWays؟",
-    why_speed: "السرعة", why_speed_p: "توصيل سريع وموعد دقيق.",
-    why_security: "الأمان", why_security_p: "تأمين الشحن وتتبع فوري.",
-    why_global: "تغطية عالمية", why_global_p: "شراكات عبر القارات لتوصيل سلس.",
-    services_title: "خدماتنا", svc_air: "الشحن الجوي", svc_air_p: "شحن جوي دولي سريع.",
-    svc_sea: "الشحن البحري", svc_sea_p: "شحن حاويات اقتصادي.", svc_ground: "التوصيل البري", svc_ground_p: "حلول التوزيع المحلي.",
-    comments_title: "آراء العملاء", comments_lead: "سجّل لتستطيع نشر تعليق. أحدث التعليقات تظهر أدناه.",
-    btn_post: "انشر", btn_signout: "تسجيل خروج", modal_title: "تسجيل الدخول", btn_cancel: "إلغاء",
-    contact_heading: "اتصل بنا", contact_info: "الهاتف: {phone} — البريد: support@allways.example",
-    footer_text: "© AllWays Shipping Company — جميع الحقوق محفوظة",
-    about_title: "عن شركة AllWays", about_p: "نحن فريق من المختصين في الخدمات اللوجستية نعمل على شحن آمن وموثوق عبر العالم.",
-    services_title: "خدماتنا", svc_customs: "التخليص الجمركي", svc_customs_p: "دعم الوثائق والامتثال.",
-    btn_whatsapp: "مراسلة عبر واتساب", btn_facebook: "صفحتنا على فيسبوك"
-  }
-};
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+:root{
+  --blue:#0b74de; --dark:#072033; --muted:#6b7280; --bg:#f6fbff; --card:#ffffff;
+  --radius:12px; --shadow: 0 10px 30px rgba(11,20,40,0.08);
+  --max-width:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{text-decoration:none;color:inherit}
 
-// Replace phone inside strings
-const PHONE = "+20 123 456 7890";
-for (let k of ['en','ar']) {
-  if (LANG[k] && LANG[k].contact_info) LANG[k].contact_info = LANG[k].contact_info.replace("{phone}", PHONE);
+/* header */
+.header{background:linear-gradient(90deg,#052840 0%, var(--blue) 100%);color:white;position:sticky;top:0;z-index:60}
+.header .wrap{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;padding:10px 18px;gap:12px}
+.logo-wrap{display:flex;align-items:center;gap:12px}
+.logo-wrap img{height:40px;width:auto;display:block}
+.logo-text{font-weight:700;font-size:18px}
+.lang-toggle{margin-left:auto;display:flex;gap:8px;align-items:center}
+.lang-btn{background:transparent;color:white;border:1px solid rgba(255,255,255,0.12);padding:6px 10px;border-radius:8px;cursor:pointer;transition:transform .12s}
+.lang-btn.active{background:rgba(255,255,255,0.12);transform:translateY(-2px)}
+.nav{display:flex;gap:12px;margin-left:18px}
+.nav a{color:white;padding:8px;border-radius:8px;transition:background .12s}
+.nav a:hover{background:rgba(255,255,255,0.06)}
+
+/* layout */
+.container{max-width:var(--max-width);margin:18px auto;padding:0 18px}
+.hero{display:flex;gap:20px;align-items:center;padding:22px;border-radius:14px;background-image:linear-gradient(0deg, rgba(11,20,40,0.06), rgba(11,20,40,0.03));overflow:hidden}
+.hero-left{flex:1;max-width:700px}
+.hero h1{margin:0;font-size:30px;color:var(--dark);line-height:1.05}
+.lead{color:var(--muted);margin-top:8px}
+.hero-cta{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{background:var(--blue);color:white;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,20,40,0.12)}
+
+/* grid / cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(15,25,40,0.04);overflow:hidden;transition:transform .22s,box-shadow .22s}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+
+/* why-us */
+.why-us{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.why-card{position:relative;height:200px;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .22s}
+.why-card img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6)}
+.why-card .txt{position:absolute;inset:0;padding:16px;color:white;display:flex;flex-direction:column;justify-content:flex-end}
+
+/* comments */
+.comments-wrap{margin-top:18px}
+.comment-box{background:var(--card);padding:12px;border-radius:10px;border:1px solid #eef6ff}
+.comments-scroll{max-height:260px;overflow:auto;padding-right:8px}
+.comment{background:var(--bg);padding:10px;border-radius:8px;margin-bottom:8px;border-left:4px solid var(--blue)}
+
+/* contact section */
+.contact-section{margin-top:28px;background:linear-gradient(180deg,#ffffff,#f4fbff);padding:18px;border-radius:12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.contact-section .left{flex:1;min-width:220px}
+.contact-section .right{display:flex;gap:10px;align-items:center}
+
+/* footer */
+.footer{background:#021820;color:white;padding:20px;text-align:center;margin-top:28px;border-radius:8px}
+
+/* modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.5);z-index:300}
+.modal .card{width:360px;padding:18px}
+
+/* responsive: scales cleanly on phones/tablets/desktops */
+@media(max-width:980px){
+  .grid{grid-template-columns:1fr 1fr}
+  .why-us{grid-template-columns:1fr 1fr}
+  .hero{flex-direction:column;align-items:flex-start}
+  .hero-left{max-width:100%}
+}
+@media(max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .why-us{grid-template-columns:1fr}
+  .nav{display:none}
+  .header .wrap{padding:8px}
+  .hero h1{font-size:22px}
+  .comments-scroll{max-height:200px}
+  .contact-section{flex-direction:column;align-items:flex-start}
 }
 
-// Apply language to all elements with data-i18n attribute
-function applyLanguage(lang){
-  try{
-    document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
-    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-
-    const enBtn = document.getElementById('lang-en');
-    const arBtn = document.getElementById('lang-ar');
-    if(enBtn && arBtn){
-      enBtn.classList.toggle('active', lang === 'en');
-      arBtn.classList.toggle('active', lang === 'ar');
-    }
-
-    document.querySelectorAll('[data-i18n]').forEach(node=>{
-      const key = node.getAttribute('data-i18n');
-      if(LANG[lang] && LANG[lang][key]) {
-        node.textContent = LANG[lang][key];
-      }
-    });
-
-    // small direction class for custom styling if needed
-    if(lang === 'ar') document.body.classList.add('rtl'); else document.body.classList.remove('rtl');
-
-    localStorage.setItem('site_lang', lang);
-  }catch(e){ console.warn('lang apply error', e); }
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
-  try{
-    document.getElementById('lang-en').addEventListener('click', ()=> applyLanguage('en'));
-    document.getElementById('lang-ar').addEventListener('click', ()=> applyLanguage('ar'));
-    const saved = localStorage.getItem('site_lang') || 'en';
-    applyLanguage(saved);
-  }catch(e){ console.warn(e); }
-});
-
-// Comments system (local)
-(function(){
-  try{
-    window.initComments = function(){
-      const loginBox = document.getElementById('loginBox');
-      const commentArea = document.getElementById('commentArea');
-      const usernameInput = document.getElementById('username');
-      const loginBtn = document.getElementById('loginBtn');
-      const postBtn = document.getElementById('postBtn');
-      const commentInput = document.getElementById('commentInput');
-      const signOutBtn = document.getElementById('signOutBtn');
-      const commentsList = document.getElementById('commentsList');
-      if(!commentsList) return;
-
-      let user = localStorage.getItem('aw_user') || null;
-      let comments = JSON.parse(localStorage.getItem('aw_comments') || '[]');
-
-      function escapeHtml(s){ return String(s).replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
-
-      window.renderComments = function(){
-        commentsList.innerHTML = '';
-        if(comments.length === 0){ commentsList.innerHTML = '<p class="muted">No comments yet — be the first!</p>'; return; }
-        comments.slice().reverse().forEach(c=>{
-          const div = document.createElement('div'); div.className='comment';
-          div.innerHTML = '<strong>' + escapeHtml(c.name) + '</strong><div style="margin-top:6px">' + escapeHtml(c.text) + '</div><div class="muted" style="font-size:12px;margin-top:6px">' + new Date(c.created).toLocaleString() + '</div>';
-          commentsList.appendChild(div);
-        });
-      };
-
-      if(user){ if(loginBox) loginBox.style.display='none'; if(commentArea) commentArea.classList.remove('hidden'); }
-      else{ if(commentArea) commentArea.classList.add('hidden'); if(loginBox) loginBox.style.display='flex'; }
-
-      if(loginBtn) loginBtn.addEventListener('click', ()=>{ const name = usernameInput.value.trim(); if(!name) return alert('Please enter your name.'); localStorage.setItem('aw_user', name); user = name; if(loginBox) loginBox.style.display='none'; if(commentArea) commentArea.classList.remove('hidden'); });
-      if(signOutBtn) signOutBtn.addEventListener('click', ()=>{ localStorage.removeItem('aw_user'); user=null; if(loginBox) loginBox.style.display='flex'; if(commentArea) commentArea.classList.add('hidden'); });
-      if(postBtn) postBtn.addEventListener('click', ()=>{ const text = commentInput.value.trim(); if(!text) return alert('Please write a comment.'); const newComment = { name: user, text, created: new Date().toISOString() }; comments.push(newComment); localStorage.setItem('aw_comments', JSON.stringify(comments)); commentInput.value=''; renderComments(); });
-
-      renderComments();
-    };
-
-    if(document.readyState === 'complete' || document.readyState === 'interactive') initComments();
-    else document.addEventListener('DOMContentLoaded', initComments);
-  }catch(e){ console.warn('init comments error', e); }
-})();
-
-// modal helpers
-function openLogin(){ const m = document.getElementById('loginModal'); if(m){ m.style.display='flex'; m.classList.remove('hidden'); } }
-function closeLogin(){ const m = document.getElementById('loginModal'); if(m){ m.style.display='none'; m.classList.add('hidden'); } }
-function doModalLogin(){ const name = document.getElementById('modalName').value.trim(); if(!name) return alert('Please enter your name'); localStorage.setItem('aw_user', name); closeLogin(); initComments(); }
+/* helpers */
+.icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:8px;background:#f1f8ff;font-weight:600}
+.hidden{display:none !important}
+.muted{color:var(--muted)}
