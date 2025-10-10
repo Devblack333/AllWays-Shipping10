@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AllWays Shipping Company — Home</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <div class="logo">AllWays Shipping Company</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div style="margin-left:auto">
+      <button class="btn" onclick="openLogin()">Sign In</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero card" style="background-image:url('https://images.unsplash.com/photo-1517148815978-75f6acaaf32c?auto=format&fit=crop&w=1400&q=80')">
+    <div class="hero-left">
+      <h1>AllWays Shipping Company</h1>
+      <p class="lead">Fast. Secure. Global. We deliver packages and freight across the world with reliable tracking and friendly service.</p>
+      <div class="hero-cta">
+        <button class="btn" onclick="location.href='services.html'">Our Services</button>
+        <button class="btn" onclick="document.getElementById('contact-scroll').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+      </div>
+    </div>
+    <div style="width:360px">
+      <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=700&q=80" style="width:100%;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.18)">
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 style="color:var(--blue)">Why Choose AllWays?</h2>
+    <div class="why-us">
+      <div class="why-card card"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80"><div class="txt"><h3>Speed</h3><p>Quick deliveries and on-time performance.</p></div></div>
+      <div class="why-card card"><img src="https://images.unsplash.com/photo-1556740765-2f6b4a0b4a4e?auto=format&fit=crop&w=900&q=80"><div class="txt"><h3>Security</h3><p>Insured shipping and real-time tracking.</p></div></div>
+      <div class="why-card card"><img src="https://images.unsplash.com/photo-1526676031502-9f1b7f3c4f3a?auto=format&fit=crop&w=900&q=80"><div class="txt"><h3>Global Reach</h3><p>Partnerships across continents for smooth delivery.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 style="color:var(--blue)">Our Services</h2>
+    <div class="grid">
+      <div class="card"><img src="https://images.unsplash.com/photo-1517638851339-4aa32003c9a6?auto=format&fit=crop&w=800&q=80"><h4>Air Freight</h4><p class="muted">Fast international air shipping.</p></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1505575978213-9b9c19a1f6b8?auto=format&fit=crop&w=800&q=80"><h4>Sea Freight</h4><p class="muted">Cost-efficient container shipping.</p></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80"><h4>Ground Delivery</h4><p class="muted">Local & last-mile delivery solutions.</p></div>
+    </div>
+  </section>
+
+  <section class="section card comments-wrap">
+    <h2 style="color:var(--blue)">Client Feedback</h2>
+    <p class="muted">Sign in to post a comment. Recent comments are shown below.</p>
+
+    <div id="loginBox" class="comment-box">
+      <div style="display:flex;gap:8px;align-items:center">
+        <input id="username" placeholder="Enter your name" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e8f0ff">
+        <button id="loginBtn" class="btn">Sign In</button>
+      </div>
+    </div>
+
+    <div id="commentArea" class="hidden comment-box" style="margin-top:12px">
+      <textarea id="commentInput" placeholder="Write your comment..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #e8f0ff"></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button id="postBtn" class="btn">Post Comment</button>
+        <button id="signOutBtn" class="btn" style="background:#6b7280">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="comment-box" style="margin-top:12px">
+      <div class="comments-scroll" id="commentsList"></div>
+    </div>
+  </section>
+
+  <section id="contact-scroll" class="contact-section">
+    <div class="left">
+      <h3>Contact Us</h3>
+      <p class="muted">Phone: <strong id="phone">+20 123 456 7890</strong> — Email: support@allways.example</p>
+    </div>
+    <div class="right">
+      <a id="wa" class="icon" href="https://wa.me/201234567890" target="_blank" title="WhatsApp">💬</a>
+      <a id="fb" class="icon" href="https://facebook.com/" target="_blank" title="Facebook">📘</a>
+      <a id="tel" class="icon" href="tel:+201234567890" title="Call">📞</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">© AllWays Shipping Company — All rights reserved</div>
+</footer>
+
+<!-- login modal -->
+<div id="loginModal" class="modal hidden" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(2,6,23,0.5);z-index:200">
+  <div class="card" style="width:360px">
+    <h3 style="margin-top:0">Sign In</h3>
+    <input id="modalName" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e8f0ff;margin-top:8px" />
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" onclick="doModalLogin()">Sign In</button>
+      <button class="btn" style="background:#6b7280" onclick="closeLogin()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
