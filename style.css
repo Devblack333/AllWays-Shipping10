@@ -1,69 +1,294 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Cairo:wght@300;400;700&display=swap');
-:root{
-  --blue:#0b74de; --dark:#072033; --muted:#6b7280; --bg:#f6fbff; --card:#ffffff;
-  --max-width:1150px;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
-a{text-decoration:none;color:inherit}
-.header{background:linear-gradient(90deg,#052840 0%, var(--blue) 100%);color:white;position:sticky;top:0;z-index:60}
-.header .wrap{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;padding:12px 18px;gap:12px}
-.logo-wrap{display:flex;align-items:center;gap:12px}
-.logo-wrap img{height:44px;width:auto;display:block}
-.logo-text{font-weight:700;font-size:18px;color:white}
-.nav{margin-left:20px;display:flex;gap:14px;align-items:center}
-.nav a{color:white;padding:8px 10px;border-radius:8px;transition:background .15s}
-.nav a:hover{background:rgba(255,255,255,0.06)}
-.lang-toggle{margin-left:auto;display:flex;gap:8px;align-items:center}
-.lang-btn{background:transparent;color:white;border:1px solid rgba(255,255,255,0.12);padding:6px 10px;border-radius:8px;cursor:pointer}
-.lang-btn.active{background:rgba(255,255,255,0.12)}
-/* container */
-.container{max-width:var(--max-width);margin:22px auto;padding:0 18px}
-.hero{display:flex;gap:20px;align-items:center;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.4));overflow:hidden}
-.hero-left{flex:1;max-width:700px}
-.hero h1{margin:0;font-size:32px;color:var(--dark)}
-.lead{color:var(--muted);margin-top:8px}
-.hero-cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
-.btn{background:var(--blue);color:white;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;box-shadow:0 8px 30px rgba(11,20,40,0.06);transition:transform .18s,box-shadow .18s}
-.btn:hover{transform:translateY(-4px)}
-/* grid & cards */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-.card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(15,25,40,0.04);overflow:hidden;transition:transform .22s}
-.card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-.card:hover{transform:translateY(-6px)}
-/* why us */
-.why-us{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.why-card{position:relative;height:200px;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .22s}
-.why-card img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6)}
-.why-card .txt{position:absolute;inset:0;padding:16px;color:white;display:flex;flex-direction:column;justify-content:flex-end}
-/* comments/contact */
-.comments-wrap{margin-top:18px}
-.comment-box{background:var(--card);padding:12px;border-radius:10px;border:1px solid #eef6ff}
-.comments-scroll{max-height:260px;overflow:auto;padding-right:8px}
-.comment{background:var(--bg);padding:10px;border-radius:8px;margin-bottom:8px;border-left:4px solid var(--blue)}
-.contact-section{margin-top:28px;background:linear-gradient(180deg,#ffffff,#f4fbff);padding:18px;border-radius:12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-.contact-section .left{flex:1;min-width:220px}
-.contact-section .right{display:flex;gap:10px;align-items:center}
-/* footer */
-.footer{background:#021820;color:white;padding:18px;text-align:center;margin-top:28px;border-radius:8px}
-/* responsive */
-@media(max-width:980px){
-  .grid{grid-template-columns:1fr 1fr}
-  .why-us{grid-template-columns:1fr 1fr}
-  .hero{flex-direction:column;align-items:flex-start}
-  .hero-left{max-width:100%}
-}
-@media(max-width:640px){
-  .grid{grid-template-columns:1fr}
-  .why-us{grid-template-columns:1fr}
-  .nav{display:none}
-  .header .wrap{padding:10px}
-  .hero h1{font-size:22px}
-  .comments-scroll{max-height:200px}
-  .contact-section{flex-direction:column;align-items:flex-start}
-}
-.icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:8px;background:#f1f8ff;font-weight:600}
-.user-badge{display:flex;align-items:center;gap:8px;color:white;font-weight:600}
-.user-badge img{height:34px;width:34px;border-radius:50%}
-.hidden{display:none !important}
-.muted{color:var(--muted)}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllWays</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7fc;
+      color: #222;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, #2563eb, #1e3a8a);
+      color: white;
+      padding: 12px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 45px;
+      width: auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .lang-switch, .signin-btn {
+      background: white;
+      border: none;
+      color: #1e3a8a;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .lang-switch:hover, .signin-btn:hover {
+      background: #e0e7ff;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 60px 8%;
+      text-align: center;
+    }
+
+    section {
+      margin: 60px 0;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #1e3a8a;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1e3a8a;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* SIGN-IN MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      background: #2563eb;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .modal-content button:hover {
+      background: #1e40af;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      nav {
+        justify-content: center;
+      }
+      main {
+        padding: 40px 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" id="logo">
+      <h1 id="companyName">AllWays</h1>
+    </div>
+    <nav>
+      <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
+      <a href="#about" data-en="About" data-ar="من نحن">About</a>
+      <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
+      <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+    </nav>
+    <div class="actions">
+      <button class="lang-switch" id="langBtn">عربي</button>
+      <button class="signin-btn" id="signinBtn" data-en="Sign In" data-ar="تسجيل الدخول">Sign In</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2 data-en="Welcome to AllWays" data-ar="مرحباً بكم في أول وايز">Welcome to AllWays</h2>
+      <p data-en="We provide smart digital solutions for your business."
+         data-ar="نحن نقدم حلولاً رقمية ذكية لعملك.">
+        We provide smart digital solutions for your business.
+      </p>
+    </section>
+
+    <section id="about">
+      <h2 data-en="About Us" data-ar="من نحن">About Us</h2>
+      <p data-en="AllWays is a tech-driven company focused on innovation and growth."
+         data-ar="أول وايز هي شركة تكنولوجية تركز على الابتكار والنمو.">
+        AllWays is a tech-driven company focused on innovation and growth.
+      </p>
+    </section>
+
+    <section id="services">
+      <h2 data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+      <ul>
+        <li data-en="Website Development" data-ar="تطوير المواقع الإلكترونية">Website Development</li>
+        <li data-en="UI / UX Design" data-ar="تصميم واجهات المستخدم">UI / UX Design</li>
+        <li data-en="Digital Marketing" data-ar="التسويق الرقمي">Digital Marketing</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2 data-en="Contact Us" data-ar="تواصل معنا">Contact Us</h2>
+      <p data-en="You can reach us anytime via the following:"
+         data-ar="يمكنك التواصل معنا في أي وقت عبر التالي:">
+        You can reach us anytime via the following:
+      </p>
+      <p>📞 <a href="tel:+201234567890">+20 123 456 7890</a></p>
+      <p>💬 <a href="https://wa.me/201234567890" target="_blank">WhatsApp</a></p>
+      <p>🌐 <a href="https://facebook.com/" target="_blank">Facebook</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 AllWays. All rights reserved.</p>
+  </footer>
+
+  <!-- SIGN IN MODAL -->
+  <div class="modal" id="signinModal">
+    <div class="modal-content">
+      <h3 data-en="Sign In" data-ar="تسجيل الدخول">Sign In</h3>
+      <input type="text" id="username" placeholder="Enter your name" data-en="Enter your name" data-ar="أدخل اسمك">
+      <button id="loginConfirm" data-en="Confirm" data-ar="تأكيد">Confirm</button>
+    </div>
+  </div>
+
+  <script>
+    const langBtn = document.getElementById('langBtn');
+    const signinBtn = document.getElementById('signinBtn');
+    const signinModal = document.getElementById('signinModal');
+    const loginConfirm = document.getElementById('loginConfirm');
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    // Language Switch
+    function applyLang() {
+      const elements = document.querySelectorAll('[data-en]');
+      elements.forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.body.style.fontFamily = currentLang === 'ar' ? '"Tajawal", sans-serif' : '"Poppins", sans-serif';
+      langBtn.textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    }
+    applyLang();
+
+    langBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      localStorage.setItem('lang', currentLang);
+      applyLang();
+    });
+
+    // Sign In Modal
+    signinBtn.addEventListener('click', () => {
+      signinModal.style.display = 'flex';
+    });
+
+    loginConfirm.addEventListener('click', () => {
+      const username = document.getElementById('username').value.trim();
+      if (!username) return alert(currentLang === 'ar' ? 'الرجاء إدخال الاسم' : 'Please enter your name');
+      localStorage.setItem('user', username);
+      alert((currentLang === 'ar' ? 'مرحباً، ' : 'Welcome, ') + username + '!');
+      signinModal.style.display = 'none';
+    });
+
+    signinModal.addEventListener('click', (e) => {
+      if (e.target === signinModal) signinModal.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
