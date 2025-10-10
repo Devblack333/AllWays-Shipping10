@@ -1,124 +1,133 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AllWays Shipping Company — Home</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="header">
-  <div class="wrap">
-    <div class="logo-wrap">
-      <img src="logo.svg" alt="AllWays logo" />
-      <div class="logo-text" data-i18n="company_name">AllWays Shipping Company</div>
-    </div>
+// Language data and UI logic + comments system
+const LANG = {
+  en: {
+    company_name: "AllWays Shipping Company",
+    nav_home: "Home", nav_about: "About", nav_services: "Services", nav_contact: "Contact",
+    hero_title: "AllWays Shipping Company",
+    hero_lead: "Fast. Secure. Global. We deliver packages and freight across the world with reliable tracking and friendly service.",
+    btn_services: "Our Services", btn_contact: "Contact Us", btn_signin: "Sign In", btn_signin_small: "Sign In",
+    why_title: "Why Choose AllWays?",
+    why_speed: "Speed", why_speed_p: "Quick deliveries and on-time performance.",
+    why_security: "Security", why_security_p: "Insured shipping and real-time tracking.",
+    why_global: "Global Reach", why_global_p: "Partnerships across continents for smooth delivery.",
+    services_title: "Our Services", svc_air: "Air Freight", svc_air_p: "Fast international air shipping.",
+    svc_sea: "Sea Freight", svc_sea_p: "Cost-efficient container shipping.", svc_ground: "Ground Delivery", svc_ground_p: "Local & last-mile delivery solutions.",
+    comments_title: "Client Feedback", comments_lead: "Sign in to post a comment. Recent comments are shown below.",
+    btn_post: "Post Comment", btn_signout: "Sign Out", modal_title: "Sign In", btn_cancel: "Cancel",
+    contact_heading: "Contact Us", contact_info: "Phone: {phone} — Email: support@allways.example",
+    footer_text: "© AllWays Shipping Company — All rights reserved",
+    about_title: "About AllWays Shipping Company", about_p: "We are a team of logistics professionals dedicated to safe and reliable shipments worldwide.",
+    services_title: "Our Services", svc_customs: "Customs Clearance", svc_customs_p: "Documentation and compliance support.",
+    btn_whatsapp: "Message on WhatsApp", btn_facebook: "Visit our Facebook"
+  },
+  ar: {
+    company_name: "AllWays Shipping Company",
+    nav_home: "الرئيسية", nav_about: "من نحن", nav_services: "خدماتنا", nav_contact: "اتصل بنا",
+    hero_title: "شركة الشحن AllWays", hero_lead: "سريع. آمن. عالمي. نوفر تتبعًا موثوقًا وخدمة ودودة لشحن الطرود والبضائع حول العالم.",
+    btn_services: "خدماتنا", btn_contact: "اتصل بنا", btn_signin: "تسجيل الدخول", btn_signin_small: "تسجيل",
+    why_title: "لماذا تختار AllWays؟",
+    why_speed: "السرعة", why_speed_p: "توصيل سريع وموعد دقيق.",
+    why_security: "الأمان", why_security_p: "تأمين الشحن وتتبع فوري.",
+    why_global: "تغطية عالمية", why_global_p: "شراكات عبر القارات لتوصيل سلس.",
+    services_title: "خدماتنا", svc_air: "الشحن الجوي", svc_air_p: "شحن جوي دولي سريع.",
+    svc_sea: "الشحن البحري", svc_sea_p: "شحن حاويات اقتصادي.", svc_ground: "التوصيل البري", svc_ground_p: "حلول التوزيع المحلي.",
+    comments_title: "آراء العملاء", comments_lead: "سجّل لتستطيع نشر تعليق. أحدث التعليقات تظهر أدناه.",
+    btn_post: "انشر", btn_signout: "تسجيل خروج", modal_title: "تسجيل الدخول", btn_cancel: "إلغاء",
+    contact_heading: "اتصل بنا", contact_info: "الهاتف: {phone} — البريد: support@allways.example",
+    footer_text: "© AllWays Shipping Company — جميع الحقوق محفوظة",
+    about_title: "عن شركة AllWays", about_p: "نحن فريق من المختصين في الخدمات اللوجستية نعمل على شحن آمن وموثوق عبر العالم.",
+    services_title: "خدماتنا", svc_customs: "التخليص الجمركي", svc_customs_p: "دعم الوثائق والامتثال.",
+    btn_whatsapp: "مراسلة عبر واتساب", btn_facebook: "صفحتنا على فيسبوك"
+  }
+};
 
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html" data-i18n="nav_home">Home</a>
-      <a href="about.html" data-i18n="nav_about">About</a>
-      <a href="services.html" data-i18n="nav_services">Services</a>
-      <a href="contact.html" data-i18n="nav_contact">Contact</a>
-    </nav>
+// Replace phone inside strings
+const PHONE = "+20 123 456 7890";
+for (let k of ['en','ar']) {
+  if (LANG[k] && LANG[k].contact_info) LANG[k].contact_info = LANG[k].contact_info.replace("{phone}", PHONE);
+}
 
-    <div class="lang-toggle" role="tablist" aria-label="Language switch">
-      <button class="lang-btn active" id="lang-en">EN</button>
-      <button class="lang-btn" id="lang-ar">AR</button>
-    </div>
+// Apply language to all elements with data-i18n attribute
+function applyLanguage(lang){
+  try{
+    document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
 
-    <div style="margin-left:8px">
-      <button class="btn" onclick="openLogin()" data-i18n="btn_signin">Sign In</button>
-    </div>
-  </div>
-</header>
+    const enBtn = document.getElementById('lang-en');
+    const arBtn = document.getElementById('lang-ar');
+    if(enBtn && arBtn){
+      enBtn.classList.toggle('active', lang === 'en');
+      arBtn.classList.toggle('active', lang === 'ar');
+    }
 
-<main class="container">
-  <section class="hero card" style="background-image:url('https://images.unsplash.com/photo-1517148815978-75f6acaaf32c?auto=format&fit=crop&w=1400&q=80')">
-    <div class="hero-left">
-      <h1 data-i18n="hero_title">AllWays Shipping Company</h1>
-      <p class="lead" data-i18n="hero_lead">Fast. Secure. Global. We deliver packages and freight across the world with reliable tracking and friendly service.</p>
-      <div class="hero-cta">
-        <button class="btn" onclick="location.href='services.html'" data-i18n="btn_services">Our Services</button>
-        <button class="btn" onclick="document.getElementById('contact-scroll').scrollIntoView({behavior:'smooth'})" data-i18n="btn_contact">Contact Us</button>
-      </div>
-    </div>
-    <div style="width:360px">
-      <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=700&q=80" alt="Shipping" style="width:100%;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.18)">
-    </div>
-  </section>
+    document.querySelectorAll('[data-i18n]').forEach(node=>{
+      const key = node.getAttribute('data-i18n');
+      if(LANG[lang] && LANG[lang][key]) {
+        node.textContent = LANG[lang][key];
+      }
+    });
 
-  <section class="section">
-    <h2 style="color:var(--blue)" data-i18n="why_title">Why Choose AllWays?</h2>
-    <div class="why-us">
-      <div class="why-card card"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80" alt=""><div class="txt"><h3 data-i18n="why_speed">Speed</h3><p data-i18n="why_speed_p">Quick deliveries and on-time performance.</p></div></div>
-      <div class="why-card card"><img src="https://images.unsplash.com/photo-1556740765-2f6b4a0b4a4e?auto=format&fit=crop&w=900&q=80" alt=""><div class="txt"><h3 data-i18n="why_security">Security</h3><p data-i18n="why_security_p">Insured shipping and real-time tracking.</p></div></div>
-      <div class="why-card card"><img src="https://images.unsplash.com/photo-1526676031502-9f1b7f3c4f3a?auto=format&fit=crop&w=900&q=80" alt=""><div class="txt"><h3 data-i18n="why_global">Global Reach</h3><p data-i18n="why_global_p">Partnerships across continents for smooth delivery.</p></div></div>
-    </div>
-  </section>
+    // small direction class for custom styling if needed
+    if(lang === 'ar') document.body.classList.add('rtl'); else document.body.classList.remove('rtl');
 
-  <section class="section">
-    <h2 style="color:var(--blue)" data-i18n="services_title">Our Services</h2>
-    <div class="grid">
-      <div class="card"><img src="https://images.unsplash.com/photo-1517638851339-4aa32003c9a6?auto=format&fit=crop&w=800&q=80" alt=""><h4 data-i18n="svc_air">Air Freight</h4><p class="muted" data-i18n="svc_air_p">Fast international air shipping.</p></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1505575978213-9b9c19a1f6b8?auto=format&fit=crop&w=800&q=80" alt=""><h4 data-i18n="svc_sea">Sea Freight</h4><p class="muted" data-i18n="svc_sea_p">Cost-efficient container shipping.</p></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80" alt=""><h4 data-i18n="svc_ground">Ground Delivery</h4><p class="muted" data-i18n="svc_ground_p">Local & last-mile delivery solutions.</p></div>
-    </div>
-  </section>
+    localStorage.setItem('site_lang', lang);
+  }catch(e){ console.warn('lang apply error', e); }
+}
 
-  <section class="section card comments-wrap">
-    <h2 style="color:var(--blue)" data-i18n="comments_title">Client Feedback</h2>
-    <p class="muted" data-i18n="comments_lead">Sign in to post a comment. Recent comments are shown below.</p>
+document.addEventListener('DOMContentLoaded', ()=>{
+  try{
+    document.getElementById('lang-en').addEventListener('click', ()=> applyLanguage('en'));
+    document.getElementById('lang-ar').addEventListener('click', ()=> applyLanguage('ar'));
+    const saved = localStorage.getItem('site_lang') || 'en';
+    applyLanguage(saved);
+  }catch(e){ console.warn(e); }
+});
 
-    <div id="loginBox" class="comment-box">
-      <div style="display:flex;gap:8px;align-items:center">
-        <input id="username" placeholder="Enter your name" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e8f0ff">
-        <button id="loginBtn" class="btn" data-i18n="btn_signin_small">Sign In</button>
-      </div>
-    </div>
+// Comments system (local)
+(function(){
+  try{
+    window.initComments = function(){
+      const loginBox = document.getElementById('loginBox');
+      const commentArea = document.getElementById('commentArea');
+      const usernameInput = document.getElementById('username');
+      const loginBtn = document.getElementById('loginBtn');
+      const postBtn = document.getElementById('postBtn');
+      const commentInput = document.getElementById('commentInput');
+      const signOutBtn = document.getElementById('signOutBtn');
+      const commentsList = document.getElementById('commentsList');
+      if(!commentsList) return;
 
-    <div id="commentArea" class="hidden comment-box" style="margin-top:12px">
-      <textarea id="commentInput" placeholder="Write your comment..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #e8f0ff"></textarea>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button id="postBtn" class="btn" data-i18n="btn_post">Post Comment</button>
-        <button id="signOutBtn" class="btn" style="background:#6b7280" data-i18n="btn_signout">Sign Out</button>
-      </div>
-    </div>
+      let user = localStorage.getItem('aw_user') || null;
+      let comments = JSON.parse(localStorage.getItem('aw_comments') || '[]');
 
-    <div class="comment-box" style="margin-top:12px">
-      <div class="comments-scroll" id="commentsList"></div>
-    </div>
-  </section>
+      function escapeHtml(s){ return String(s).replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
 
-  <section id="contact-scroll" class="contact-section">
-    <div class="left">
-      <h3 data-i18n="contact_heading">Contact Us</h3>
-      <p class="muted" data-i18n="contact_info">Phone: <strong id="phone">+20 123 456 7890</strong> — Email: support@allways.example</p>
-    </div>
-    <div class="right">
-      <a id="wa" class="icon" href="https://wa.me/201234567890" target="_blank" title="WhatsApp">💬</a>
-      <a id="fb" class="icon" href="https://facebook.com/" target="_blank" title="Facebook">📘</a>
-      <a id="tel" class="icon" href="tel:+201234567890" title="Call">📞</a>
-    </div>
-  </section>
+      window.renderComments = function(){
+        commentsList.innerHTML = '';
+        if(comments.length === 0){ commentsList.innerHTML = '<p class="muted">No comments yet — be the first!</p>'; return; }
+        comments.slice().reverse().forEach(c=>{
+          const div = document.createElement('div'); div.className='comment';
+          div.innerHTML = '<strong>' + escapeHtml(c.name) + '</strong><div style="margin-top:6px">' + escapeHtml(c.text) + '</div><div class="muted" style="font-size:12px;margin-top:6px">' + new Date(c.created).toLocaleString() + '</div>';
+          commentsList.appendChild(div);
+        });
+      };
 
-</main>
+      if(user){ if(loginBox) loginBox.style.display='none'; if(commentArea) commentArea.classList.remove('hidden'); }
+      else{ if(commentArea) commentArea.classList.add('hidden'); if(loginBox) loginBox.style.display='flex'; }
 
-<footer class="footer">
-  <div class="container" data-i18n="footer_text">© AllWays Shipping Company — All rights reserved</div>
-</footer>
+      if(loginBtn) loginBtn.addEventListener('click', ()=>{ const name = usernameInput.value.trim(); if(!name) return alert('Please enter your name.'); localStorage.setItem('aw_user', name); user = name; if(loginBox) loginBox.style.display='none'; if(commentArea) commentArea.classList.remove('hidden'); });
+      if(signOutBtn) signOutBtn.addEventListener('click', ()=>{ localStorage.removeItem('aw_user'); user=null; if(loginBox) loginBox.style.display='flex'; if(commentArea) commentArea.classList.add('hidden'); });
+      if(postBtn) postBtn.addEventListener('click', ()=>{ const text = commentInput.value.trim(); if(!text) return alert('Please write a comment.'); const newComment = { name: user, text, created: new Date().toISOString() }; comments.push(newComment); localStorage.setItem('aw_comments', JSON.stringify(comments)); commentInput.value=''; renderComments(); });
 
-<!-- login modal -->
-<div id="loginModal" class="modal hidden" style="display:none">
-  <div class="card">
-    <h3 data-i18n="modal_title">Sign In</h3>
-    <input id="modalName" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e8f0ff;margin-top:8px" />
-    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
-      <button class="btn" onclick="doModalLogin()" data-i18n="btn_signin">Sign In</button>
-      <button class="btn" style="background:#6b7280" onclick="closeLogin()" data-i18n="btn_cancel">Cancel</button>
-    </div>
-  </div>
-</div>
+      renderComments();
+    };
 
-<script src="script.js"></script>
-</body>
-</html>
+    if(document.readyState === 'complete' || document.readyState === 'interactive') initComments();
+    else document.addEventListener('DOMContentLoaded', initComments);
+  }catch(e){ console.warn('init comments error', e); }
+})();
+
+// modal helpers
+function openLogin(){ const m = document.getElementById('loginModal'); if(m){ m.style.display='flex'; m.classList.remove('hidden'); } }
+function closeLogin(){ const m = document.getElementById('loginModal'); if(m){ m.style.display='none'; m.classList.add('hidden'); } }
+function doModalLogin(){ const name = document.getElementById('modalName').value.trim(); if(!name) return alert('Please enter your name'); localStorage.setItem('aw_user', name); closeLogin(); initComments(); }
