@@ -2,6 +2,19 @@
 
 const SITE_PHONE = "+20 123 456 7890";
 
+// --- IMAGE PATH VARIABLES (Recommended Structure) ---
+// IMPORTANT: Adjust the path if your images are in a folder other than 'images/'
+// Replace the image paths with your actual file names
+const IMG_AIR_EN = "images/air-freight-en.jpg"; 
+const IMG_SEA_EN = "images/sea-freight-en.jpg";
+const IMG_GROUND_EN = "images/ground-delivery-en.jpg"; 
+
+const IMG_AIR_AR = "images/air-freight-ar.jpg"; 
+const IMG_SEA_AR = "images/sea-freight-ar.jpg";
+const IMG_GROUND_AR = "images/ground-delivery-ar.jpg"; 
+// Note: You must ensure you have these files in your 'images' folder.
+
+
 // --- 1. Static Translations (Header/Footer/Metadata) ---
 const LANG = {
   en: {
@@ -26,7 +39,7 @@ const LANG = {
 const EN_MAIN_CONTENT = `
     <section id="home" class="hero">
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline crossorigin="anonymous">
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
 
@@ -68,7 +81,7 @@ const EN_MAIN_CONTENT = `
     <h2>Our Services</h2>
     <div class="grid services-grid">
       <div class="card svc">
-        <img src="https://images.unsplash.com/photo-1549399540-3c9b9f17c62e?auto=format&fit=crop&w=1200&q=80" alt="Air freight">
+        <img src="${IMG_AIR_EN}" alt="Air freight">
         <h3>Air Freight</h3>
         <p>Priority air shipping for time-sensitive cargo with airport-to-airport or door-to-door options.</p>
       </div>
@@ -137,7 +150,7 @@ const EN_MAIN_CONTENT = `
     <div class="right">
       <a class="btn" href="https://wa.me/201234567890" target="_blank" rel="noopener">Message on WhatsApp</a>
       <a class="btn secondary" href="https://facebook.com" target="_blank" rel="noopener">Visit our Facebook</a>
-    </div>
+          </div>
   </section>
 `;
 
@@ -145,7 +158,7 @@ const EN_MAIN_CONTENT = `
 const AR_MAIN_CONTENT = `
     <section id="home" class="hero">
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline crossorigin="anonymous">
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
 
@@ -187,7 +200,7 @@ const AR_MAIN_CONTENT = `
     <h2>خدماتنا</h2>
     <div class="grid services-grid">
       <div class="card svc">
-        <img src="https://images.unsplash.com/photo-1549399540-3c9b9f17c62e?auto=format&fit=crop&w=1200&q=80" alt="الشحن الجوي">
+        <img src="${IMG_AIR_AR}" alt="الشحن الجوي الأولوية">
         <h3>الشحن الجوي</h3>
         <p>شحن جوي أولوية للبضائع الحساسة للوقت مع خيارات من مطار إلى مطار أو من الباب إلى الباب.</p>
       </div>
@@ -271,6 +284,7 @@ function applyLanguage(lang) {
   try {
     const isAR = (lang === 'ar');
     const currentLangData = isAR ? LANG.ar : LANG.en;
+    const contentToInject = isAR ? AR_MAIN_CONTENT : EN_MAIN_CONTENT;
 
     // 1. Full Site Change (except name): HTML, Direction, and Meta
     document.documentElement.lang = isAR ? 'ar' : 'en';
@@ -278,10 +292,10 @@ function applyLanguage(lang) {
     document.title = currentLangData.title;
     $id('meta-description').setAttribute('content', currentLangData.meta_desc);
 
-    // 2. Main Content Swap
-    $id('pageContent').innerHTML = isAR ? AR_MAIN_CONTENT : EN_MAIN_CONTENT;
+    // 2. Main Content Swap (This is the most critical line)
+    $id('pageContent').innerHTML = contentToInject;
 
-    // 3. Static Text/Header/Footer Update (using data-i18n for these few items)
+    // 3. Static Text/Header/Footer Update 
     $id('footer-text').textContent = currentLangData.footer_text;
     
     // Apply language to elements with data-i18n (nav links, call us pill)
@@ -292,6 +306,7 @@ function applyLanguage(lang) {
 
     // 4. Manual Text & Button Toggles
     $id('phone') && ($id('phone').textContent = SITE_PHONE);
+    $id('contactPhone') && ($id('contactPhone').textContent = SITE_PHONE);
     const enBtn = $id('lang-en');
     const arBtn = $id('lang-ar');
     if (enBtn && arBtn) { 
@@ -301,7 +316,6 @@ function applyLanguage(lang) {
 
     // 5. Re-run post-swap scripts
     heroVideoEnhancements(); // Needed to re-bind the video logic after content swap
-    // Note: Smooth scroll and mobile nav logic already binds to document load
     
     localStorage.setItem('site_lang', lang);
   } catch (e) { console.warn('applyLanguage error:', e); }
