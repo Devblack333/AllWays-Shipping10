@@ -68,7 +68,7 @@ const EN_MAIN_CONTENT = `
     <h2>Our Services</h2>
     <div class="grid services-grid">
       <div class="card svc">
-        <img src="premium_photo-1664695368767-c42483a0bda1.jpeg" alt="Air freight">
+        <img src="https://images.unsplash.com/photo-1549399540-3c9b9f17c62e?auto=format&fit=crop&w=1200&q=80" alt="Air freight">
         <h3>Air Freight</h3>
         <p>Priority air shipping for time-sensitive cargo with airport-to-airport or door-to-door options.</p>
       </div>
