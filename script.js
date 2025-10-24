@@ -3,13 +3,13 @@
 const SITE_PHONE = "+20 123 456 7890";
 
 // --- IMAGE PATH VARIABLES (Make sure these files exist in your 'images/' folder) ---
-const IMG_AIR_EN = "images/air-freight-en.jpg"; 
-const IMG_SEA_EN = "images/sea-freight-en.jpg";
-const IMG_GROUND_EN = "images/ground-delivery-en.jpg"; 
+const IMG_AIR_EN = "images/Plane"; 
+const IMG_SEA_EN = "images/Ship";
+const IMG_GROUND_EN = "images/Truck"; 
 
-const IMG_AIR_AR = "images/air-freight-ar.jpg"; 
-const IMG_SEA_AR = "images/sea-freight-ar.jpg";
-const IMG_GROUND_AR = "images/ground-delivery-ar.jpg"; 
+const IMG_AIR_AR = "images/Plane"; 
+const IMG_SEA_AR = "images/Ship";
+const IMG_GROUND_AR = "images/Truck"; 
 // Note: I left some images as dummy URLs for simplicity, but you can swap them all like the first one.
 
 
