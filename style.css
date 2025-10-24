@@ -1,16 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Cairo:wght@300;400;700&display=swap');
 :root{
-  --blue:#007bff;
-  --bg:#f6f8fb;
-  --card:#ffffff;
-  --muted:#6b7280;
-  --dark:#072033;
-  --max-width:1100px;
-  --radius:12px;
+  --blue:#007bff;
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --dark:#072033;
+  --max-width:1100px;
+  --radius:12px;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
+
+/* RTL Specific Improvement (for Arabic content) */
+html[dir="rtl"] {
+  font-family: Cairo, system-ui, Arial; /* Use Cairo for Arabic */
+}
+html[dir="rtl"] .card h2,
+html[dir="rtl"] .card h3,
+html[dir="rtl"] .hero-left h1,
+html[dir="rtl"] .lead,
+html[dir="rtl"] .muted,
+html[dir="rtl"] p {
+  text-align: right;
+}
+html[dir="rtl"] .trust-row {
+  flex-direction: row-reverse; /* Icons on the right in RTL */
+}
+html[dir="rtl"] .trust-row div:last-child {
+  margin-left: 0;
+  margin-right: 10px;
+}
+html[dir="rtl"] .contact-pill {
+  flex-direction: row-reverse;
+}
+
 
 /* Header */
 .header{background:linear-gradient(90deg,#0356b6 0%, var(--blue) 100%);color:white;position:sticky;top:0;z-index:80}
@@ -78,19 +102,19 @@ a{text-decoration:none;color:inherit}
 
 /* responsive */
 @media(max-width:980px){
-  .grid{grid-template-columns:1fr 1fr}
-  .why-us{grid-template-columns:1fr 1fr}
-  .hero{flex-direction:column;align-items:flex-start}
-  .hero-left{max-width:100%}
+  .grid{grid-template-columns:1fr 1fr}
+  .why-us{grid-template-columns:1fr 1fr}
+  .hero{flex-direction:column;align-items:flex-start}
+  .hero-left{max-width:100%}
 }
 @media(max-width:640px){
-  .grid{grid-template-columns:1fr}
-  .why-us{grid-template-columns:1fr}
-  .nav{display:none}
-  .header .wrap{padding:10px}
-  .hero h1{font-size:22px}
-  .comments-scroll{max-height:200px}
-  .contact-section{flex-direction:column;align-items:flex-start}
+  .grid{grid-template-columns:1fr}
+  .why-us{grid-template-columns:1fr}
+  .nav{display:none}
+  .header .wrap{padding:10px}
+  .hero h1{font-size:22px}
+  .comments-scroll{max-height:200px}
+  .contact-section{flex-direction:column;align-items:flex-start}
 }
 
 /* improvements */
@@ -111,14 +135,14 @@ html { font-size: 16px; }
 .comment-post { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
 #commentInput { width:100%; padding:10px; border-radius:8px; border:1px solid #e6eefc; font-family:inherit; resize:vertical; min-height:56px; }
 @media (max-width:1100px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width:640px) {
-  .header .wrap { padding:10px; }
-  .nav { display:none; } 
-  .nav-toggle { display:block; margin-left:auto; }
-  .hero { padding:18px; min-height:320px; }
-  .hero-left { padding:8px 0; }
+  .header .wrap { padding:10px; }
+  .nav { display:none; } 
+  .nav-toggle { display:block; margin-left:auto; }
+  .hero { padding:18px; min-height:320px; }
+  .hero-left { padding:8px 0; }
 }
 .card h2, .card h3 { margin:6px 0 8px; }
 .services-grid .card img { height:140px; object-fit:cover; }
