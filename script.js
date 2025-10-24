@@ -6,16 +6,16 @@ const SITE_PHONE = "+20 123 456 7890";
 
 // Services: Defined as objects to handle language-specific paths
 const Ship = {
-    en: "images/Ship-en.jpg", 
-    ar: "images/Ship-ar.jpg"
+    en: "images/Ship.jpg", 
+    ar: "images/Ship.jpg"
 };
 const Plane = {
-    en: "images/Plane-en.jpg", 
-    ar: "images/Plane-ar.jpg"
+    en: "images/Plane.jpg", 
+    ar: "images/Plane.jpg"
 };
 const Truck = {
-    en: "images/Truck-en.jpg", 
-    ar: "images/Truck-ar.jpg"
+    en: "images/Truck.jpg", 
+    ar: "images/Truck.jpg"
 };
 
 // Why Us: Defined as simple strings (using stable external URLs)
