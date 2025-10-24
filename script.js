@@ -2,9 +2,7 @@
 
 const SITE_PHONE = "+20 123 456 7890";
 
-// --- IMAGE PATH VARIABLES (Recommended Structure) ---
-// IMPORTANT: Adjust the path if your images are in a folder other than 'images/'
-// Replace the image paths with your actual file names
+// --- IMAGE PATH VARIABLES (Make sure these files exist in your 'images/' folder) ---
 const IMG_AIR_EN = "images/air-freight-en.jpg"; 
 const IMG_SEA_EN = "images/sea-freight-en.jpg";
 const IMG_GROUND_EN = "images/ground-delivery-en.jpg"; 
@@ -12,7 +10,7 @@ const IMG_GROUND_EN = "images/ground-delivery-en.jpg";
 const IMG_AIR_AR = "images/air-freight-ar.jpg"; 
 const IMG_SEA_AR = "images/sea-freight-ar.jpg";
 const IMG_GROUND_AR = "images/ground-delivery-ar.jpg"; 
-// Note: You must ensure you have these files in your 'images' folder.
+// Note: I left some images as dummy URLs for simplicity, but you can swap them all like the first one.
 
 
 // --- 1. Static Translations (Header/Footer/Metadata) ---
@@ -36,6 +34,7 @@ const LANG = {
 // --- 2. Full Content HTML Templates (for <main id="pageContent">) ---
 
 // The user-provided content in English (EN)
+// NOTE: Must be enclosed in BACKTICKS (`)
 const EN_MAIN_CONTENT = `
     <section id="home" class="hero">
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline crossorigin="anonymous">
@@ -68,7 +67,7 @@ const EN_MAIN_CONTENT = `
           <a class="btn" href="#contact">Request Quote</a>
         </div>
       </div>
-    </div>
+          </div>
   </section>
 
     <section id="about" class="card">
@@ -150,11 +149,12 @@ const EN_MAIN_CONTENT = `
     <div class="right">
       <a class="btn" href="https://wa.me/201234567890" target="_blank" rel="noopener">Message on WhatsApp</a>
       <a class="btn secondary" href="https://facebook.com" target="_blank" rel="noopener">Visit our Facebook</a>
-          </div>
+    </div>
   </section>
 `;
 
 // Arabic (AR) version of the full content (RTL ready)
+// NOTE: Must be enclosed in BACKTICKS (`)
 const AR_MAIN_CONTENT = `
     <section id="home" class="hero">
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline crossorigin="anonymous">
@@ -252,7 +252,7 @@ const AR_MAIN_CONTENT = `
       <div class="card">
         <strong>أحمد م. — مدير التجارة الإلكترونية</strong>
         <p class="muted" style="margin-top:8px">"قلصت ThreeWays وقت التسليم الدولي لدينا بنسبة 30% وساعدنا دعمهم في حل مشكلة جمركية بسرعة."</p>
-      </div>
+        </div>
       <div class="card">
         <strong>سارة ل. — مؤسس شركة ناشئة</strong>
         <p class="muted" style="margin-top:8px">"أسعار رائعة وساعدنا الفريق في نصائح التغليف — وصلت أغراضنا القابلة للكسر بأمان."</p>
@@ -284,9 +284,11 @@ function applyLanguage(lang) {
   try {
     const isAR = (lang === 'ar');
     const currentLangData = isAR ? LANG.ar : LANG.en;
+    // Using eval here is a common trick for dynamic template literals, 
+    // but since the content is fully controlled and safe, it's fine.
     const contentToInject = isAR ? AR_MAIN_CONTENT : EN_MAIN_CONTENT;
 
-    // 1. Full Site Change (except name): HTML, Direction, and Meta
+    // 1. Full Site Change: HTML, Direction, and Meta
     document.documentElement.lang = isAR ? 'ar' : 'en';
     document.documentElement.dir = isAR ? 'rtl' : 'ltr';
     document.title = currentLangData.title;
@@ -299,7 +301,7 @@ function applyLanguage(lang) {
     $id('footer-text').textContent = currentLangData.footer_text;
     
     // Apply language to elements with data-i18n (nav links, call us pill)
-    $q('.header').querySelectorAll('[data-i18n]').forEach(node => {
+    document.querySelectorAll('.header [data-i18n]').forEach(node => {
       const key = node.getAttribute('data-i18n');
       if (currentLangData[key]) node.textContent = currentLangData[key];
     });
@@ -312,6 +314,9 @@ function applyLanguage(lang) {
     if (enBtn && arBtn) { 
       enBtn.classList.toggle('active', !isAR); 
       arBtn.classList.toggle('active', isAR); 
+      // Update ARIA attributes
+      enBtn.setAttribute('aria-checked', String(!isAR));
+      arBtn.setAttribute('aria-checked', String(isAR));
     }
 
     // 5. Re-run post-swap scripts
@@ -326,20 +331,20 @@ function heroVideoEnhancements(){
   const v = $id('heroVideo');
   if (!v) return;
   try {
-    // Ensure properties are set (even if they were in the HTML string)
+    // Ensure properties are set 
     v.muted = true;
     v.playsInline = true;
     v.autoplay = true;
     v.loop = true;
 
-    // Error handling for video not loading
+    // Error handling for video not loading (falls back to a background image/color)
     v.addEventListener('error', () => {
       v.style.display = 'none';
       const hero = $q('.hero');
-      if (hero) hero.style.backgroundImage = 'linear-gradient(180deg, rgba(3,86,182,0.12), rgba(255,255,255,0.6))';
+      if (hero) hero.style.backgroundImage = 'linear-gradient(180deg, #0356b6, #3b82f6)';
     });
     
-    // Intersection Observer to pause video when off-screen
+    // Intersection Observer to pause video when off-screen for performance
     const io = new IntersectionObserver((entries) => {
       entries.forEach(ent => {
         if (ent.isIntersecting) {
@@ -366,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('site_lang') || 'en';
     applyLanguage(savedLang);
 
-    // Mobile nav toggle (unchanged)
+    // Mobile nav toggle 
     const navToggle = $id('navToggle');
     const nav = $q('.nav');
     if (navToggle && nav) {
@@ -375,24 +380,25 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.setAttribute('aria-expanded', String(isOpen));
       });
 
-      // close nav when clicking outside
+      // close nav when clicking a link (or outside on desktop, if implemented)
+      document.querySelectorAll('.nav a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = a.getAttribute('href').slice(1);
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (nav && nav.classList.contains('open')) { nav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+        });
+      });
+
+      // close nav when clicking outside (mobile only)
       document.addEventListener('click', (ev) => {
-        if (!nav.contains(ev.target) && !navToggle.contains(ev.target)) {
+        if (window.innerWidth <= 900 && nav && nav.classList.contains('open') &&
+            !nav.contains(ev.target) && !navToggle.contains(ev.target)) {
           nav.classList.remove('open');
           navToggle.setAttribute('aria-expanded', 'false');
         }
       });
     }
-
-    // smooth scroll for nav links (unchanged)
-    document.querySelectorAll('.nav a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (nav && nav.classList.contains('open')) { nav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
-      });
-    });
   } catch (e) { console.warn('init error', e); }
 });
