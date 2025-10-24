@@ -2,15 +2,26 @@
 
 const SITE_PHONE = "+20 123 456 7890";
 
-// --- IMAGE PATH VARIABLES (Make sure these files exist in your 'images/' folder) ---
-const IMG_AIR_EN = "images/Plane"; 
-const IMG_SEA_EN = "images/Ship";
-const IMG_GROUND_EN = "images/Truck"; 
+// --- IMAGE PATH VARIABLES (Matches your file structure: Ship-en.jpg, Plane-ar.jpg, etc.) ---
 
-const IMG_AIR_AR = "images/Plane"; 
-const IMG_SEA_AR = "images/Ship";
-const IMG_GROUND_AR = "images/Truck"; 
-// Note: I left some images as dummy URLs for simplicity, but you can swap them all like the first one.
+// Services: Defined as objects to handle language-specific paths
+const Ship = {
+    en: "images/Ship-en.jpg", 
+    ar: "images/Ship-ar.jpg"
+};
+const Plane = {
+    en: "images/Plane-en.jpg", 
+    ar: "images/Plane-ar.jpg"
+};
+const Truck = {
+    en: "images/Truck-en.jpg", 
+    ar: "images/Truck-ar.jpg"
+};
+
+// Why Us: Defined as simple strings (using stable external URLs)
+const Why1 = "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80"; // Speed
+const Why2 = "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80"; // Security
+const Why3 = "https://images.unsplash.com/photo-1508704019882-f9cf40e4756f?auto=format&fit=crop&w=1200&q=80"; // Global Reach
 
 
 // --- 1. Static Translations (Header/Footer/Metadata) ---
@@ -34,9 +45,8 @@ const LANG = {
 // --- 2. Full Content HTML Templates (for <main id="pageContent">) ---
 
 // The user-provided content in English (EN)
-// NOTE: Must be enclosed in BACKTICKS (`)
 const EN_MAIN_CONTENT = `
-    <section id="home" class="hero">
+        <section id="home" class="hero">
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline crossorigin="anonymous">
       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
     </video>
@@ -70,52 +80,55 @@ const EN_MAIN_CONTENT = `
           </div>
   </section>
 
-    <section id="about" class="card">
+        <section id="about" class="card">
     <h2>About ThreeWays Shipping</h2>
     <p class="muted">We are a global logistics team simplifying trade and delivery for businesses and individuals. Like any other global shipping company, we handle customs paperwork, insurance options, and custom routing to keep goods moving efficiently.</p>
     <p>Founded by logistics professionals with decades of experience, our focus is safety, transparency, and lowering time-in-transit for your cargo.</p>
   </section>
 
-    <section id="services" class="card">
+        <section id="services" class="card">
     <h2>Our Services</h2>
     <div class="grid services-grid">
-      <div class="card svc">
-        <img src="${plane}" alt="Air freight">
-        <h3>Air Freight</h3>
-        <p>Priority air shipping for time-sensitive cargo with airport-to-airport or door-to-door options.</p>
-      </div>
-      <div class="card svc">
-        <img src="${Ship}" alt="Sea freight">
+      
+            <div class="card svc">
+        <img src="${Ship.en}" alt="Sea freight">
         <h3>Sea Freight</h3>
         <p>Full container loads (FCL) and less-than-container (LCL) services with global carrier partnerships.</p>
       </div>
-      <div class="card svc">
-        <img src="${truck}" alt="Ground delivery">
+      
+            <div class="card svc">
+        <img src="${Plane.en}" alt="Air freight">
+        <h3>Air Freight</h3>
+        <p>Priority air shipping for time-sensitive cargo with airport-to-airport or door-to-door options.</p>
+      </div>
+
+            <div class="card svc">
+        <img src="${Truck.en}" alt="Ground delivery">
         <h3>Ground Delivery</h3>
         <p>Last-mile solutions, local couriers and palletized freight for regional distribution.</p>
       </div>
     </div>
   </section>
 
-    <section class="card why-section">
+        <section class="card why-section">
     <h2>Why Choose ThreeWays?</h2>
     <div class="why-us">
       <div class="why-card">
-        <img src="${minaa}" alt="Speed">
+        <img src="${Why1}" alt="Speed">
         <div class="txt">
           <h3>Speed</h3>
           <p>Optimized routes and express options to keep your supply chain moving.</p>
         </div>
       </div>
       <div class="why-card">
-        <img src="${plane}" alt="Security">
+        <img src="${Why2}" alt="Security">
         <div class="txt">
           <h3>Security</h3>
           <p>Secured handling, optional insurance, and tamper-evident packaging for sensitive shipments.</p>
         </div>
         </div>
       <div class="why-card">
-        <img src="${plane}" alt="Global Reach">
+        <img src="${Why3}" alt="Global Reach">
         <div class="txt">
           <h3>Global Reach</h3>
           <p>Strong carrier network and customs expertise across continents.</p>
@@ -124,7 +137,7 @@ const EN_MAIN_CONTENT = `
     </div>
   </section>
 
-    <section class="card comments-wrap" id="testimonialsSection">
+        <section class="card comments-wrap" id="testimonialsSection">
     <h2>Customer Stories</h2>
     <p class="muted">Real customers, real results — selected from recent shipments handled by ThreeWays.</p>
 
@@ -140,7 +153,7 @@ const EN_MAIN_CONTENT = `
     </div>
   </section>
 
-    <section id="contact" class="card contact-section">
+        <section id="contact" class="card contact-section">
     <div class="left">
       <h2>Contact Us</h2>
       <p class="muted">Phone: <strong id="contactPhone">${SITE_PHONE}</strong> — Email: <a href="mailto:support@threeways.example">support@threeways.example</a></p>
@@ -154,9 +167,8 @@ const EN_MAIN_CONTENT = `
 `;
 
 // Arabic (AR) version of the full content (RTL ready)
-// NOTE: Must be enclosed in BACKTICKS (`)
 const AR_MAIN_CONTENT = `
-    <section id="home" class="hero">
+        <section id="home" class="hero">
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline crossorigin="anonymous">
       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
     </video>
@@ -190,52 +202,55 @@ const AR_MAIN_CONTENT = `
     </div>
   </section>
 
-    <section id="about" class="card">
+        <section id="about" class="card">
     <h2>عن شركة ThreeWays</h2>
     <p class="muted">نحن فريق لوجستي عالمي يعمل على تبسيط التجارة والتسليم للشركات والأفراد. نتعامل مع أوراق الجمارك وخيارات التأمين والتوجيه المخصص لضمان تحرك البضائع بكفاءة.</p>
     <p>تأسست الشركة من قبل مختصين في الخدمات اللوجستية بخبرة عقود، ونركز على السلامة والشفافية وتقليل وقت النقل لشحنتك.</p>
   </section>
 
-    <section id="services" class="card">
+        <section id="services" class="card">
     <h2>خدماتنا</h2>
     <div class="grid services-grid">
-      <div class="card svc">
-        <img src="${plane}" alt="الشحن الجوي الأولوية">
-        <h3>الشحن الجوي</h3>
-        <p>شحن جوي أولوية للبضائع الحساسة للوقت مع خيارات من مطار إلى مطار أو من الباب إلى الباب.</p>
-      </div>
-      <div class="card svc">
-        <img src="${Ship}" alt="الشحن البحري">
+      
+            <div class="card svc">
+        <img src="${Ship.ar}" alt="الشحن البحري">
         <h3>الشحن البحري</h3>
         <p>خدمات حاويات كاملة (FCL) وأقل من حمولة حاوية (LCL) بشراكات عالمية.</p>
       </div>
-      <div class="card svc">
-        <img src="${truck}" alt="التوصيل البري">
+      
+            <div class="card svc">
+        <img src="${Plane.ar}" alt="الشحن الجوي الأولوية">
+        <h3>الشحن الجوي</h3>
+        <p>شحن جوي أولوية للبضائع الحساسة للوقت مع خيارات من مطار إلى مطار أو من الباب إلى الباب.</p>
+      </div>
+      
+            <div class="card svc">
+        <img src="${Truck.ar}" alt="التوصيل البري">
         <h3>التوصيل البري</h3>
         <p>حلول الميل الأخير، وخدمات البريد السريع المحلي، والشحن على منصات نقالة للتوزيع الإقليمي.</p>
       </div>
     </div>
   </section>
 
-    <section class="card why-section">
+        <section class="card why-section">
     <h2>لماذا تختار ThreeWays؟</h2>
     <div class="why-us">
       <div class="why-card">
-        <img src="${plane}" alt="السرعة">
+        <img src="${Why1}" alt="السرعة">
         <div class="txt">
           <h3>السرعة</h3>
           <p>مسارات مُحسّنة وخيارات سريعة للحفاظ على حركة سلسلة التوريد الخاصة بك.</p>
         </div>
       </div>
       <div class="why-card">
-        <img src="${plane}" alt="الأمان">
+        <img src="${Why2}" alt="الأمان">
         <div class="txt">
           <h3>الأمان</h3>
           <p>مناولة مؤمنة، وتأمين اختياري، وتغليف مقاوم للعبث للشحنات الحساسة.</p>
         </div>
       </div>
       <div class="why-card">
-        <img src="${plane}" alt="تغطية عالمية">
+        <img src="${Why3}" alt="تغطية عالمية">
         <div class="txt">
           <h3>تغطية عالمية</h3>
           <p>شبكة قوية من شركات النقل والخبرة الجمركية عبر القارات.</p>
@@ -244,7 +259,7 @@ const AR_MAIN_CONTENT = `
     </div>
   </section>
 
-    <section class="card comments-wrap" id="testimonialsSection">
+        <section class="card comments-wrap" id="testimonialsSection">
     <h2>قصص العملاء</h2>
     <p class="muted">عملاء حقيقيون، نتائج حقيقية — مختارة من الشحنات الأخيرة التي تعاملت معها ThreeWays.</p>
 
@@ -260,7 +275,7 @@ const AR_MAIN_CONTENT = `
     </div>
   </section>
 
-    <section id="contact" class="card contact-section">
+        <section id="contact" class="card contact-section">
     <div class="left">
       <h2>اتصل بنا</h2>
       <p class="muted">هاتف: <strong id="contactPhone">${SITE_PHONE}</strong> — بريد إلكتروني: <a href="mailto:support@threeways.example">support@threeways.example</a></p>
@@ -284,8 +299,6 @@ function applyLanguage(lang) {
   try {
     const isAR = (lang === 'ar');
     const currentLangData = isAR ? LANG.ar : LANG.en;
-    // Using eval here is a common trick for dynamic template literals, 
-    // but since the content is fully controlled and safe, it's fine.
     const contentToInject = isAR ? AR_MAIN_CONTENT : EN_MAIN_CONTENT;
 
     // 1. Full Site Change: HTML, Direction, and Meta
@@ -314,9 +327,9 @@ function applyLanguage(lang) {
     if (enBtn && arBtn) { 
       enBtn.classList.toggle('active', !isAR); 
       arBtn.classList.toggle('active', isAR); 
-      // Update ARIA attributes
-      enBtn.setAttribute('aria-checked', String(!isAR));
-      arBtn.setAttribute('aria-checked', String(isAR));
+      // Update ARIA attributes
+      enBtn.setAttribute('aria-checked', String(!isAR));
+      arBtn.setAttribute('aria-checked', String(isAR));
     }
 
     // 5. Re-run post-swap scripts
@@ -391,10 +404,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      // close nav when clicking outside (mobile only)
+      // close nav when clicking outside (mobile only)
       document.addEventListener('click', (ev) => {
         if (window.innerWidth <= 900 && nav && nav.classList.contains('open') &&
-            !nav.contains(ev.target) && !navToggle.contains(ev.target)) {
+            !nav.contains(ev.target) && !navToggle.contains(ev.target)) {
           nav.classList.remove('open');
           navToggle.setAttribute('aria-expanded', 'false');
         }
