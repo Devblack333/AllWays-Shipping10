@@ -80,17 +80,17 @@ const EN_MAIN_CONTENT = `
     <h2>Our Services</h2>
     <div class="grid services-grid">
       <div class="card svc">
-        <img src="${IMG_AIR_EN}" alt="Air freight">
+        <img src="${plane}" alt="Air freight">
         <h3>Air Freight</h3>
         <p>Priority air shipping for time-sensitive cargo with airport-to-airport or door-to-door options.</p>
       </div>
       <div class="card svc">
-        <img src="https://images.unsplash.com/photo-1502784444185-8e9af7a6c1b6?auto=format&fit=crop&w=1200&q=80" alt="Sea freight">
+        <img src="${Ship}" alt="Sea freight">
         <h3>Sea Freight</h3>
         <p>Full container loads (FCL) and less-than-container (LCL) services with global carrier partnerships.</p>
       </div>
       <div class="card svc">
-        <img src="https://images.unsplash.com/photo-1504704911898-683f2e3d4f35?auto=format&fit=crop&w=1200&q=80" alt="Ground delivery">
+        <img src="${truck}" alt="Ground delivery">
         <h3>Ground Delivery</h3>
         <p>Last-mile solutions, local couriers and palletized freight for regional distribution.</p>
       </div>
@@ -101,21 +101,21 @@ const EN_MAIN_CONTENT = `
     <h2>Why Choose ThreeWays?</h2>
     <div class="why-us">
       <div class="why-card">
-        <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80" alt="Speed">
+        <img src="${minaa}" alt="Speed">
         <div class="txt">
           <h3>Speed</h3>
           <p>Optimized routes and express options to keep your supply chain moving.</p>
         </div>
       </div>
       <div class="why-card">
-        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80" alt="Security">
+        <img src="${plane}" alt="Security">
         <div class="txt">
           <h3>Security</h3>
           <p>Secured handling, optional insurance, and tamper-evident packaging for sensitive shipments.</p>
         </div>
         </div>
       <div class="why-card">
-        <img src="https://images.unsplash.com/photo-1508704019882-f9cf40e4756f?auto=format&fit=crop&w=1200&q=80" alt="Global Reach">
+        <img src="${plane}" alt="Global Reach">
         <div class="txt">
           <h3>Global Reach</h3>
           <p>Strong carrier network and customs expertise across continents.</p>
@@ -200,17 +200,17 @@ const AR_MAIN_CONTENT = `
     <h2>خدماتنا</h2>
     <div class="grid services-grid">
       <div class="card svc">
-        <img src="${IMG_AIR_AR}" alt="الشحن الجوي الأولوية">
+        <img src="${plane}" alt="الشحن الجوي الأولوية">
         <h3>الشحن الجوي</h3>
         <p>شحن جوي أولوية للبضائع الحساسة للوقت مع خيارات من مطار إلى مطار أو من الباب إلى الباب.</p>
       </div>
       <div class="card svc">
-        <img src="https://images.unsplash.com/photo-1502784444185-8e9af7a6c1b6?auto=format&fit=crop&w=1200&q=80" alt="الشحن البحري">
+        <img src="${Ship}" alt="الشحن البحري">
         <h3>الشحن البحري</h3>
         <p>خدمات حاويات كاملة (FCL) وأقل من حمولة حاوية (LCL) بشراكات عالمية.</p>
       </div>
       <div class="card svc">
-        <img src="https://images.unsplash.com/photo-1504704911898-683f2e3d4f35?auto=format&fit=crop&w=1200&q=80" alt="التوصيل البري">
+        <img src="${truck}" alt="التوصيل البري">
         <h3>التوصيل البري</h3>
         <p>حلول الميل الأخير، وخدمات البريد السريع المحلي، والشحن على منصات نقالة للتوزيع الإقليمي.</p>
       </div>
@@ -221,21 +221,21 @@ const AR_MAIN_CONTENT = `
     <h2>لماذا تختار ThreeWays؟</h2>
     <div class="why-us">
       <div class="why-card">
-        <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80" alt="السرعة">
+        <img src="${plane}" alt="السرعة">
         <div class="txt">
           <h3>السرعة</h3>
           <p>مسارات مُحسّنة وخيارات سريعة للحفاظ على حركة سلسلة التوريد الخاصة بك.</p>
         </div>
       </div>
       <div class="why-card">
-        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80" alt="الأمان">
+        <img src="${plane}" alt="الأمان">
         <div class="txt">
           <h3>الأمان</h3>
           <p>مناولة مؤمنة، وتأمين اختياري، وتغليف مقاوم للعبث للشحنات الحساسة.</p>
         </div>
       </div>
       <div class="why-card">
-        <img src="https://images.unsplash.com/photo-1508704019882-f9cf40e4756f?auto=format&fit=crop&w=1200&q=80" alt="تغطية عالمية">
+        <img src="${plane}" alt="تغطية عالمية">
         <div class="txt">
           <h3>تغطية عالمية</h3>
           <p>شبكة قوية من شركات النقل والخبرة الجمركية عبر القارات.</p>
