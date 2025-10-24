@@ -43,20 +43,20 @@ p { margin-bottom: 1em; }
     gap: 20px;
 }
 
-/* RTL Specific Styles (Arabic) */
-[dir='rtl'] body {
+/* RTL Specific Styles (Arabic) - fixed selectors so they target correctly */
+html[dir='rtl'] body {
     font-family: var(--font-family-ar);
     text-align: right; /* Default text alignment for RTL */
 }
-[dir='rtl'] .header-right { margin-left: auto; margin-right: 0; }
-[dir='rtl'] .hero-left { margin-right: 0; margin-left: 20px; }
-[dir='rtl'] .hero-right { margin-left: 0; margin-right: 20px; }
-[dir='rtl'] .nav { margin-left: 20px; margin-right: 0; }
-[dir='rtl'] .trust-row div:last-child { margin-right: 10px !important; margin-left: 0 !important; }
-[dir='rtl'] .contact-section { flex-direction: row-reverse; }
-[dir='rtl'] .contact-section .left { text-align: right; }
-[dir='rtl'] .contact-section .right a { margin-right: 0; margin-left: 10px; }
-[dir='rtl'] .why-card .txt { margin-left: 0; margin-right: 15px; }
+html[dir='rtl'] .header-right { margin-left: auto; margin-right: 0; }
+html[dir='rtl'] .hero-left { margin-right: 0; margin-left: 20px; }
+html[dir='rtl'] .hero-right { margin-left: 0; margin-right: 20px; }
+html[dir='rtl'] .nav { margin-left: 20px; margin-right: 0; }
+html[dir='rtl'] .trust-row div:last-child { margin-right: 10px !important; margin-left: 0 !important; }
+html[dir='rtl'] .contact-section { flex-direction: row-reverse; }
+html[dir='rtl'] .contact-section .left { text-align: right; }
+html[dir='rtl'] .contact-section .right a { margin-right: 0; margin-left: 10px; }
+html[dir='rtl'] .why-card .txt { margin-left: 0; margin-right: 15px; }
 
 
 /* Header & Navigation */
