@@ -1,6 +1,6 @@
 /* script.js - robust image-path resolver + language swap (drop-in) */
 
-const SITE_PHONE = "+20 123 456 7890";
+const SITE_PHONE = "+20 111 301 2341";
 
 /* tiny transparent fallback */
 const TRANSPARENT_PIXEL = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
